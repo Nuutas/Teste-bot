@@ -1,0 +1,3146 @@
+package com.example.sofia2.ui.home;
+
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.example.sofia2.Add_1;
+import com.example.sofia2.Modos;
+import com.example.sofia2.R;
+import com.example.sofia2.Start;
+import com.example.sofia2.databinding.FragmentHomeBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+
+import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
+
+public class HomeFragment extends Fragment {
+
+    private Button btn_wifi_off;
+    private ImageView img_sofia, img_wifi_off;
+    private TextView txt_wifi_off1, txt_wifi_off2;
+
+    private TextView txt_ola;
+
+    private Button add1;
+    private TextView nomeusuario, txt1, txt2,txt3, txt4, txt5, txt6, txt7, txt8;
+    private String user;
+    private ImageView btn_del, img1, img2, img3, img4, img5, img6, img7, img8;
+    Button btn_v1, btn_v2, btn_v3, btn_v4, btn_v5, btn_v6, btn_v7, btn_v8;
+    private View v1, v2, v3, v4, v5, v6, v7, v8;
+    int d1, d2, d3, d4, d5, d6, d7, d8, x, del1, del2, del3, del4, del5, del6, del7, del8, y1, y2, y3, y4, y5, y6, y7, y8;
+    String o1, o2, o3, o4, o5, o6, o7, o8, nome1, nome2, nome3, nome4, nome5, nome6, nome7, nome8, id1, id2, id3, id4, id5, id6, id7, id8;
+
+    String novo_dispositivo, nome, nome_add, id_add;
+
+    String ID1, ID2, ID3, ID4, ID5, ID6, ID7, ID8;
+    FirebaseFirestore rdf;
+    FirebaseDatabase rdb;
+    DatabaseReference id;
+
+    FirebaseFirestore banco_dados = FirebaseFirestore.getInstance();
+
+    private FragmentHomeBinding binding;
+
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        HomeViewModel dashboardViewModel =
+                new ViewModelProvider(this).get(HomeViewModel.class);
+
+
+
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+        iniciarcompunentes();
+
+
+        nomeusuario = root.findViewById(R.id.txt_nome);
+        getFirebaseData();
+        iniciarcompunentes();
+        atualizar();
+        organizar();
+        atualizar();
+        organizar();
+        getFirebaseData();
+
+        Handler handler1 = new Handler();
+        handler1.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                getFirebaseData();
+                iniciarcompunentes();
+                atualizar();
+                organizar();
+                atualizar();
+                organizar();
+                getFirebaseData();
+
+
+                nomeusuario.setText(nome);
+
+                if (novo_dispositivo.equals("1")){
+
+                    if (o1.equals("1")){
+
+                        if (o2.equals("1")){
+
+                            if (o3.equals("1")){
+
+                                if (o4.equals("1")){
+
+                                    if (o5.equals("1")){
+
+                                        if (o6.equals("1")){
+
+                                            if (o7.equals("1")){
+
+                                                if (o8.equals("1")){
+
+                                                    Toast.makeText(getActivity(), "Numero de dispositivos exedido", Toast.LENGTH_SHORT).show();
+                                                    atualizar();
+                                                    organizar();
+                                                    getFirebaseData();
+
+                                                }else {
+                                                    Toast.makeText(getActivity(), "O Novo foi para o 8", Toast.LENGTH_SHORT).show();
+
+                                                    novo_dispositivo = "0";
+                                                    o8 = "1";
+
+                                                    user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                                    DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+                                                    documentReference.update("novo_dispositivo", novo_dispositivo);
+                                                    documentReference.update("o8", o8);
+
+                                                    documentReference.update("id8", id_add);
+                                                    documentReference.update("nome8", nome_add);
+
+                                                    nome_add = "0";
+                                                    id_add = "0";
+
+                                                    documentReference.update("nome_add", "0");
+                                                    documentReference.update("id_add", "0");
+
+                                                    atualizar();
+                                                    organizar();
+                                                    atualizar();
+                                                    organizar();
+                                                    getFirebaseData();
+                                                }
+
+
+
+                                            }else {
+                                                Toast.makeText(getActivity(), "O Novo foi para o 7", Toast.LENGTH_SHORT).show();
+
+                                                novo_dispositivo = "0";
+                                                o5 = "7";
+
+                                                user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                                DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+                                                documentReference.update("novo_dispositivo", novo_dispositivo);
+                                                documentReference.update("o7", o7);
+
+                                                documentReference.update("id7", id_add);
+                                                documentReference.update("nome7", nome_add);
+
+                                                nome_add = "0";
+                                                id_add = "0";
+
+                                                documentReference.update("nome_add", "0");
+                                                documentReference.update("id_add", "0");
+
+                                                atualizar();
+                                                organizar();
+                                                atualizar();
+                                                organizar();
+                                                getFirebaseData();
+                                            }
+
+                                        }else{
+                                            Toast.makeText(getActivity(), "O Novo foi para o 6", Toast.LENGTH_SHORT).show();
+
+                                            novo_dispositivo = "0";
+                                            o6 = "1";
+
+                                            user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                            DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+                                            documentReference.update("novo_dispositivo", novo_dispositivo);
+                                            documentReference.update("o6", o6);
+
+                                            documentReference.update("id6", id_add);
+                                            documentReference.update("nome6", nome_add);
+
+                                            nome_add = "0";
+                                            id_add = "0";
+
+                                            documentReference.update("nome_add", "0");
+                                            documentReference.update("id_add", "0");
+
+                                            atualizar();
+                                            organizar();
+                                            atualizar();
+                                            organizar();
+                                            getFirebaseData();
+                                        }
+
+                                    }else{
+                                        Toast.makeText(getActivity(), "O Novo foi para o 5", Toast.LENGTH_SHORT).show();
+
+                                        novo_dispositivo = "0";
+                                        o5 = "1";
+
+                                        user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                        DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+                                        documentReference.update("novo_dispositivo", novo_dispositivo);
+                                        documentReference.update("o5", o5);
+
+                                        documentReference.update("id5", id_add);
+                                        documentReference.update("nome5", nome_add);
+
+                                        nome_add = "0";
+                                        id_add = "0";
+
+                                        documentReference.update("nome_add", "0");
+                                        documentReference.update("id_add", "0");
+
+                                        atualizar();
+                                        organizar();
+                                        atualizar();
+                                        organizar();
+                                        getFirebaseData();
+                                    }
+
+
+
+                                }else{
+                                    Toast.makeText(getActivity(), "O Novo foi para o 4", Toast.LENGTH_SHORT).show();
+
+                                    novo_dispositivo = "0";
+                                    o4 = "1";
+
+                                    user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                    DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+                                    documentReference.update("novo_dispositivo", novo_dispositivo);
+                                    documentReference.update("o4", o4);
+
+                                    documentReference.update("id4", id_add);
+                                    documentReference.update("nome4", nome_add);
+
+                                    nome_add = "0";
+                                    id_add = "0";
+
+                                    documentReference.update("nome_add", "0");
+                                    documentReference.update("id_add", "0");
+
+                                    atualizar();
+                                    organizar();
+                                    atualizar();
+                                    organizar();
+                                    getFirebaseData();
+                                }
+
+                            }else {
+                                Toast.makeText(getActivity(), "O Novo foi para o 3", Toast.LENGTH_SHORT).show();
+
+                                novo_dispositivo = "0";
+                                o3 = "1";
+
+                                user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+                                documentReference.update("novo_dispositivo", novo_dispositivo);
+                                documentReference.update("o3", o3);
+
+                                documentReference.update("id3", id_add);
+                                documentReference.update("nome3", nome_add);
+
+                                nome_add = "0";
+                                id_add = "0";
+
+                                documentReference.update("nome_add", "0");
+                                documentReference.update("id_add", "0");
+
+                                atualizar();
+                                organizar();
+                                atualizar();
+                                organizar();
+                                getFirebaseData();
+                            }
+
+                        }else {
+                            Toast.makeText(getActivity(), "O Novo foi para o 2", Toast.LENGTH_SHORT).show();
+                            novo_dispositivo = "0";
+                            o2 = "1";
+
+                            user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+                            documentReference.update("novo_dispositivo", novo_dispositivo);
+                            documentReference.update("o2", o2);
+
+                            documentReference.update("id2", id_add);
+                            documentReference.update("nome2", nome_add);
+
+                            nome_add = "0";
+                            id_add = "0";
+
+                            documentReference.update("nome_add", "0");
+                            documentReference.update("id_add", "0");
+
+                            atualizar();
+                            organizar();
+                            atualizar();
+                            organizar();
+                            getFirebaseData();
+                        }
+
+                    }else {
+                        Toast.makeText(getActivity(), "O Novo foi para o 1", Toast.LENGTH_SHORT).show();
+
+                        novo_dispositivo = "0";
+                        o1 = "1";
+
+                        user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                        DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+                        documentReference.update("novo_dispositivo", novo_dispositivo);
+                        documentReference.update("o1", o1);
+
+                        documentReference.update("id1", id_add);
+                        documentReference.update("nome1", nome_add);
+
+                        nome_add = "0";
+                        id_add = "0";
+
+                        documentReference.update("nome_add", "0");
+                        documentReference.update("id_add", "0");
+
+                        atualizar();
+                        organizar();
+                        atualizar();
+                        organizar();
+                        getFirebaseData();
+
+                    }
+
+                }
+
+
+                btn_del = (ImageView) root.findViewById(R.id.img_del);
+                btn_del.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        x++;
+
+                        if (del1 == 1){
+
+
+                            rdb = FirebaseDatabase.getInstance();
+                            id = rdb.getReference(ID1);
+                            id.setValue(0);
+
+
+                            v1.setVisibility(View.INVISIBLE);
+                            v1.setBackgroundResource(R.drawable.view);
+
+
+                            btn_v1.setBackgroundResource(R.drawable.btn_geral_off);
+                            btn_v1.setText("Desligado");
+                            btn_v1.setVisibility(View.INVISIBLE);
+
+                            txt1.setText("");
+                            txt1.setVisibility(View.INVISIBLE);
+
+                            img1.setVisibility(View.INVISIBLE);
+
+                            y1 = 0;
+                            del1 = 0;
+                            x = 0;
+                            ID1 = null;
+
+                            nome1 = null;
+                            id1 = null;
+                            o1 = "0";
+
+                            user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+                            documentReference.update("nome1", nome1);
+                            documentReference.update("id1", id1);
+                            documentReference.update("o1", o1);
+
+                            atualizar();
+                            organizar();
+                            atualizar();
+                            organizar();
+                            getFirebaseData();
+
+                        }
+
+
+                        if (del2 == 1){
+
+
+                            rdb = FirebaseDatabase.getInstance();
+                            id = rdb.getReference(ID2);
+                            id.setValue(0);
+
+
+                            v2.setVisibility(View.INVISIBLE);
+                            v2.setBackgroundResource(R.drawable.view);
+
+
+                            btn_v2.setBackgroundResource(R.drawable.btn_geral_off);
+                            btn_v2.setText("Desligado");
+                            btn_v2.setVisibility(View.INVISIBLE);
+
+                            txt2.setText("");
+                            txt2.setVisibility(View.INVISIBLE);
+
+                            img2.setVisibility(View.INVISIBLE);
+
+                            y2 = 0;
+                            del2 = 0;
+                            x = 0;
+                            ID2 = null;
+
+                            nome2 = null;
+                            id2 = null;
+                            o2 = "0";
+
+                            user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+                            documentReference.update("nome2", nome2);
+                            documentReference.update("id2", id2);
+                            documentReference.update("o2", o2);
+
+                            atualizar();
+                            organizar();
+                            atualizar();
+                            organizar();
+                            getFirebaseData();
+                        }
+
+
+                        if (del3 == 1){
+
+
+                            rdb = FirebaseDatabase.getInstance();
+                            id = rdb.getReference(ID3);
+                            id.setValue(0);
+
+
+                            v3.setVisibility(View.INVISIBLE);
+                            v3.setBackgroundResource(R.drawable.view);
+
+                            btn_v3.setBackgroundResource(R.drawable.btn_geral_off);
+                            btn_v3.setText("Desligado");
+                            btn_v3.setVisibility(View.INVISIBLE);
+
+                            txt3.setText("");
+                            txt3.setVisibility(View.INVISIBLE);
+
+                            img3.setVisibility(View.INVISIBLE);
+
+                            y3 = 0;
+                            del3 = 0;
+                            x = 0;
+                            ID3 = null;
+
+                            nome3 = null;
+                            id3 = null;
+                            o3 = "0";
+
+                            user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+                            documentReference.update("nome3", nome3);
+                            documentReference.update("id3", id3);
+                            documentReference.update("o3", o3);
+
+                            atualizar();
+                            organizar();
+                            atualizar();
+                            organizar();
+                            getFirebaseData();
+
+                        }
+
+
+                        if (del4 == 1){
+
+
+                            rdb = FirebaseDatabase.getInstance();
+                            id = rdb.getReference(ID4);
+                            id.setValue(0);
+
+
+                            v4.setVisibility(View.INVISIBLE);
+                            v4.setBackgroundResource(R.drawable.view);
+
+                            btn_v4.setBackgroundResource(R.drawable.btn_geral_off);
+                            btn_v4.setText("Desligado");
+                            btn_v4.setVisibility(View.INVISIBLE);
+
+                            txt4.setText("");
+                            txt4.setVisibility(View.INVISIBLE);
+
+                            img4.setVisibility(View.INVISIBLE);
+
+                            y4 = 0;
+                            del4 = 0;
+                            x = 0;
+                            ID4 = null;
+
+                            nome4 = null;
+                            id4 = null;
+                            o4 = "0";
+
+                            user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+                            documentReference.update("nome4", nome4);
+                            documentReference.update("id4", id4);
+                            documentReference.update("o4", o4);
+
+                            atualizar();
+                            organizar();
+                            atualizar();
+                            organizar();
+                            getFirebaseData();
+
+                        }
+
+
+                        if (del5 == 1){
+
+
+                            rdb = FirebaseDatabase.getInstance();
+                            id = rdb.getReference(ID5);
+                            id.setValue(0);
+
+
+                            v5.setVisibility(View.INVISIBLE);
+                            v5.setBackgroundResource(R.drawable.view);
+
+                            btn_v5.setBackgroundResource(R.drawable.btn_geral_off);
+                            btn_v5.setText("Desligado");
+                            btn_v5.setVisibility(View.INVISIBLE);
+
+                            txt5.setText("");
+                            txt5.setVisibility(View.INVISIBLE);
+
+                            img5.setVisibility(View.INVISIBLE);
+
+                            y5 = 0;
+                            del5 = 0;
+                            x = 0;
+                            ID5 = null;
+
+                            nome5 = null;
+                            id5 = null;
+                            o5 = "0";
+
+                            user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+                            documentReference.update("nome5", nome5);
+                            documentReference.update("id5", id5);
+                            documentReference.update("o5", o5);
+
+                            atualizar();
+                            organizar();
+                            atualizar();
+                            organizar();
+                            getFirebaseData();
+
+                        }
+
+
+                        if (del6 == 1){
+
+
+                            rdb = FirebaseDatabase.getInstance();
+                            id = rdb.getReference(ID6);
+                            id.setValue(0);
+
+
+                            v6.setVisibility(View.INVISIBLE);
+                            v6.setBackgroundResource(R.drawable.view);
+
+                            btn_v6.setBackgroundResource(R.drawable.btn_geral_off);
+                            btn_v6.setText("Desligado");
+                            btn_v6.setVisibility(View.INVISIBLE);
+
+                            txt6.setText("");
+                            txt6.setVisibility(View.INVISIBLE);
+
+                            img6.setVisibility(View.INVISIBLE);
+
+                            y6 = 0;
+                            del6 = 0;
+                            x = 0;
+                            ID6 = null;
+
+                            nome6 = null;
+                            id6 = null;
+                            o6 = "0";
+
+                            user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+                            documentReference.update("nome6", nome6);
+                            documentReference.update("id6", id6);
+                            documentReference.update("o6", o6);
+
+                            atualizar();
+                            organizar();
+                            atualizar();
+                            organizar();
+                            getFirebaseData();
+
+                        }
+
+
+                        if (del7 == 1){
+
+
+                            rdb = FirebaseDatabase.getInstance();
+                            id = rdb.getReference(ID7);
+                            id.setValue(0);
+
+
+                            v7.setVisibility(View.INVISIBLE);
+                            v7.setBackgroundResource(R.drawable.view);
+
+                            btn_v7.setBackgroundResource(R.drawable.btn_geral_off);
+                            btn_v7.setText("Desligado");
+                            btn_v7.setVisibility(View.INVISIBLE);
+
+                            txt7.setText("");
+                            txt7.setVisibility(View.INVISIBLE);
+
+                            img7.setVisibility(View.INVISIBLE);
+
+                            y7 = 0;
+                            del7 = 0;
+                            x = 0;
+                            ID7 = null;
+
+                            nome7 = null;
+                            id7 = null;
+                            o7 = "0";
+
+                            user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+                            documentReference.update("nome7", nome7);
+                            documentReference.update("id7", id7);
+                            documentReference.update("o7", o7);
+
+                            atualizar();
+                            organizar();
+                            atualizar();
+                            organizar();
+                            getFirebaseData();
+
+                        }
+
+
+
+                        if (del8 == 1){
+
+
+                            rdb = FirebaseDatabase.getInstance();
+                            id = rdb.getReference(ID8);
+                            id.setValue(0);
+
+
+                            v8.setVisibility(View.INVISIBLE);
+                            v8.setBackgroundResource(R.drawable.view);
+
+                            btn_v8.setBackgroundResource(R.drawable.btn_geral_off);
+                            btn_v8.setText("Desligado");
+                            btn_v8.setVisibility(View.INVISIBLE);
+
+                            txt8.setText("");
+                            txt8.setVisibility(View.INVISIBLE);
+
+                            img8.setVisibility(View.INVISIBLE);
+
+                            y8 = 0;
+                            del8 = 0;
+                            x = 0;
+                            ID8 = null;
+
+                            nome8 = null;
+                            id8 = null;
+                            o8 = "0";
+
+                            user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+                            documentReference.update("nome8", nome8);
+                            documentReference.update("id8", id8);
+                            documentReference.update("o8", o8);
+
+                            atualizar();
+                            organizar();
+                            atualizar();
+                            organizar();
+                            getFirebaseData();
+
+                        }
+
+                        atualizar();
+                        organizar();
+                        atualizar();
+                        organizar();
+                        getFirebaseData();
+
+                        if (x==1){
+                            btn_del.setBackgroundResource(R.drawable.ic_delete_on);
+                        }
+
+                        if (x == 2) {
+                            x = x - 2;
+                        }
+
+                        if (x == 3) {
+                            x = x - 3;
+                        }
+
+                        if (x == 0){
+                            btn_del.setBackgroundResource(R.drawable.ic_delete);
+                        }
+
+
+
+                    }
+                });
+
+
+                add1 = (Button) root.findViewById(R.id.btn_add);
+                add1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent intent = new Intent(getActivity().getApplication(), Add_1.class);
+                        startActivity(intent);
+
+                    }
+                });
+
+                btn_v1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (x == 0) {
+
+                                //codigo firebase on/off
+                                d1++;
+
+                            if (d1 == 1) {
+                                btn_v1.setBackgroundResource(R.drawable.btn_geral_on);
+                                btn_v1.setText("Ligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID1);
+                                id.setValue(2);
+
+                            }
+
+                            if (d1 == 2) {
+                                d1 = d1 - 2;
+                            }
+
+                            if (d1 == 0) {
+                                btn_v1.setBackgroundResource(R.drawable.btn_geral_off);
+                                btn_v1.setText("Desligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID1);
+                                id.setValue(0);
+
+                            }
+                        }
+
+                                        //Eliminar dispositivo 1
+
+                                        if (x == 1) {
+
+                                            y1 ++;
+
+                                            if (y1 == 1) {
+                                                v1.setBackgroundResource(R.drawable.view_del);
+                                                del1 = 1;
+                                            }
+
+                                            if (y1 == 2) {
+                                                y1 = y1 - 2;
+                                            }
+
+                                            if (y1 == 0) {
+                                                v1.setBackgroundResource(R.drawable.view);
+                                                del1 = 0;
+                                            }
+
+                                        }
+
+                    }
+                });
+
+                btn_v2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (x == 0) {
+
+                            d2++;
+
+                            if (d2 == 1) {
+                                btn_v2.setBackgroundResource(R.drawable.btn_geral_on);
+                                btn_v2.setText("Ligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID2);
+                                id.setValue(2);
+
+                            }
+
+                            if (d2 == 2) {
+                                d2 = d2 - 2;
+                            }
+
+                            if (d2 == 0) {
+                                btn_v2.setBackgroundResource(R.drawable.btn_geral_off);
+                                btn_v2.setText("Desligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID2);
+                                id.setValue(0);
+
+                            }
+                        }
+
+
+
+
+                                    //Eliminar dispositivo 2
+                                    if (x == 1) {
+
+                                        y2 ++;
+
+                                        if (y2 == 1) {
+                                            v2.setBackgroundResource(R.drawable.view_del);
+                                            del2 = 1;
+                                        }
+
+                                        if (y2 == 2) {
+                                            y2 = y2 - 2;
+                                        }
+
+                                        if (y2 == 0) {
+                                            v2.setBackgroundResource(R.drawable.view);
+                                            del2 = 0;
+                                        }
+
+                                    }
+                    }
+                });
+
+
+                btn_v3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (x == 0) {
+
+                            d3 ++;
+
+                            if (d3 == 1) {
+                                btn_v3.setBackgroundResource(R.drawable.btn_geral_on);
+                                btn_v3.setText("Ligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID3);
+                                id.setValue(2);
+
+                            }
+
+                            if (d3 == 2) {
+                                d3 = d3 - 2;
+                            }
+
+                            if (d3 == 0) {
+                                btn_v3.setBackgroundResource(R.drawable.btn_geral_off);
+                                btn_v3.setText("Desligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID3);
+                                id.setValue(0);
+
+                            }
+
+                        }
+
+                                        //Eliminar dispositivo 3
+                                        if (x == 1) {
+
+                                            y3 ++;
+
+                                            if (y3 == 1) {
+                                                v3.setBackgroundResource(R.drawable.view_del);
+                                                del3 = 1;
+                                            }
+
+                                            if (y3 == 2) {
+                                                y3 = y3 - 2;
+                                            }
+
+                                            if (y3 == 0) {
+                                                v3.setBackgroundResource(R.drawable.view);
+                                                del3 = 0;
+                                            }
+
+                                        }
+
+                    }
+                });
+
+                btn_v4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (x == 0) {
+
+                            d4++;
+
+                            if (d4 == 1) {
+                                btn_v4.setBackgroundResource(R.drawable.btn_geral_on);
+                                btn_v4.setText("Ligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID4);
+                                id.setValue(2);
+
+                            }
+
+                            if (d4 == 2) {
+                                d4 = d4 - 2;
+                            }
+
+                            if (d4 == 0) {
+                                btn_v4.setBackgroundResource(R.drawable.btn_geral_off);
+                                btn_v4.setText("Desligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID4);
+                                id.setValue(0);
+
+                            }
+                        }
+
+                                    //Eliminar dispositivo 4
+                                    if (x == 1) {
+
+                                        y4 ++;
+
+                                        if (y4 == 1) {
+                                            v4.setBackgroundResource(R.drawable.view_del);
+                                            del4 = 1;
+                                        }
+
+                                        if (y4 == 2) {
+                                            y4 = y4 - 2;
+                                        }
+
+                                        if (y4 == 0) {
+                                            v4.setBackgroundResource(R.drawable.view);
+                                            del4 = 0;
+                                        }
+
+                                    }
+
+                    }
+                });
+
+                btn_v5.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (x == 0) {
+
+                            d5++;
+
+                            if (d5 == 1) {
+                                btn_v5.setBackgroundResource(R.drawable.btn_geral_on);
+                                btn_v5.setText("Ligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID5);
+                                id.setValue(2);
+
+                            }
+
+                            if (d5 == 2) {
+                                d5 = d5 - 2;
+                            }
+
+                            if (d5 == 0) {
+                                btn_v5.setBackgroundResource(R.drawable.btn_geral_off);
+                                btn_v5.setText("Desligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID5);
+                                id.setValue(0);
+
+                            }
+                        }
+
+                                    //Eliminar dispositivo 5
+                                    if (x == 1) {
+
+                                        y5 ++;
+
+                                        if (y5 == 1) {
+                                            v5.setBackgroundResource(R.drawable.view_del);
+                                            del5 = 1;
+                                        }
+
+                                        if (y5 == 2) {
+                                            y5 = y5 - 2;
+                                        }
+
+                                        if (y5 == 0) {
+                                            v5.setBackgroundResource(R.drawable.view);
+                                            del5 = 0;
+                                        }
+
+                                    }
+
+                    }
+                });
+
+                btn_v6.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (x == 0) {
+
+                            d6++;
+
+                            if (d6 == 1) {
+                                btn_v6.setBackgroundResource(R.drawable.btn_geral_on);
+                                btn_v6.setText("Ligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID6);
+                                id.setValue(2);
+
+                            }
+
+                            if (d6 == 2) {
+                                d6 = d6 - 2;
+                            }
+
+                            if (d6 == 0) {
+                                btn_v6.setBackgroundResource(R.drawable.btn_geral_off);
+                                btn_v6.setText("Desligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID6);
+                                id.setValue(0);
+
+                            }
+                        }
+
+                                    //Eliminar dispositivo 6
+                                    if (x == 1) {
+
+                                        y6 ++;
+
+                                        if (y6 == 1) {
+                                            v6.setBackgroundResource(R.drawable.view_del);
+                                            del6 = 1;
+                                        }
+
+                                        if (y6 == 2) {
+                                            y6 = y6 - 2;
+                                        }
+
+                                        if (y6 == 0) {
+                                            v6.setBackgroundResource(R.drawable.view);
+                                            del6 = 0;
+                                        }
+
+                                    }
+
+                    }
+                });
+
+                btn_v7.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (x == 0) {
+
+                            d7++;
+
+                            if (d7 == 1) {
+                                btn_v7.setBackgroundResource(R.drawable.btn_geral_on);
+                                btn_v7.setText("Ligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID7);
+                                id.setValue(2);
+
+                            }
+
+                            if (d7 == 2) {
+                                d7 = d7 - 2;
+                            }
+
+                            if (d7 == 0) {
+                                btn_v7.setBackgroundResource(R.drawable.btn_geral_off);
+                                btn_v7.setText("Desligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID7);
+                                id.setValue(0);
+
+                            }
+                        }
+
+                                    //Eliminar dispositivo 7
+                                    if (x == 1) {
+
+                                        y7 ++;
+
+                                        if (y7 == 1) {
+                                            v7.setBackgroundResource(R.drawable.view_del);
+                                            del7 = 1;
+                                        }
+
+                                        if (y7 == 2) {
+                                            y7 = y7 - 2;
+                                        }
+
+                                        if (y7 == 0) {
+                                            v7.setBackgroundResource(R.drawable.view);
+                                            del7 = 0;
+                                        }
+
+                                    }
+
+                    }
+                });
+
+                btn_v8.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (x == 0) {
+
+                            d8++;
+
+                            if (d8 == 1) {
+                                btn_v8.setBackgroundResource(R.drawable.btn_geral_on);
+                                btn_v8.setText("Ligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID8);
+                                id.setValue(2);
+
+                            }
+
+                            if (d8 == 2) {
+                                d8 = d8 - 2;
+                            }
+
+                            if (d8 == 0) {
+                                btn_v8.setBackgroundResource(R.drawable.btn_geral_off);
+                                btn_v8.setText("Desligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID8);
+                                id.setValue(0);
+
+                            }
+                        }
+
+                                        //Eliminar dispositivo 8
+                                        if (x == 1) {
+
+                                            y8 ++;
+
+                                            if (y8 == 1) {
+                                                v8.setBackgroundResource(R.drawable.view_del);
+                                                del8 = 1;
+                                            }
+
+                                            if (y8 == 2) {
+                                                y8 = y8 - 2;
+                                            }
+
+                                            if (y8 == 0) {
+                                                v8.setBackgroundResource(R.drawable.view);
+                                                del8 = 0;
+                                            }
+
+                                        }
+
+                    }
+                });
+
+
+
+                v1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (x == 0) {
+
+                            //codigo firebase on/off
+                            d1++;
+
+                            if (d1 == 1) {
+                                btn_v1.setBackgroundResource(R.drawable.btn_geral_on);
+                                btn_v1.setText("Ligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID1);
+                                id.setValue(2);
+
+                            }
+
+                            if (d1 == 2) {
+                                d1 = d1 - 2;
+                            }
+
+                            if (d1 == 0) {
+                                btn_v1.setBackgroundResource(R.drawable.btn_geral_off);
+                                btn_v1.setText("Desligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID1);
+                                id.setValue(0);
+
+                            }
+                        }
+
+                                        //Eliminar dispositivo 1
+
+                                        if (x == 1) {
+
+                                            y1 ++;
+
+                                            if (y1 == 1) {
+                                                v1.setBackgroundResource(R.drawable.view_del);
+                                                del1 = 1;
+                                            }
+
+                                            if (y1 == 2) {
+                                                y1 = y1 - 2;
+                                            }
+
+                                            if (y1 == 0) {
+                                                v1.setBackgroundResource(R.drawable.view);
+                                                del1 = 0;
+                                            }
+
+                                        }
+                    }
+                });
+
+                v2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (x == 0) {
+
+                            d2++;
+
+                            if (d2 == 1) {
+                                btn_v2.setBackgroundResource(R.drawable.btn_geral_on);
+                                btn_v2.setText("Ligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID2);
+                                id.setValue(2);
+
+                            }
+
+                            if (d2 == 2) {
+                                d2 = d2 - 2;
+                            }
+
+                            if (d2 == 0) {
+                                btn_v2.setBackgroundResource(R.drawable.btn_geral_off);
+                                btn_v2.setText("Desligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID2);
+                                id.setValue(0);
+
+                            }
+                        }
+
+                                        //Eliminar dispositivo 2
+                                        if (x == 1) {
+
+                                            y2 ++;
+
+                                            if (y2 == 1) {
+                                                v2.setBackgroundResource(R.drawable.view_del);
+                                                del2 = 1;
+                                            }
+
+                                            if (y2 == 2) {
+                                                y2 = y2 - 2;
+                                            }
+
+                                            if (y2 == 0) {
+                                                v2.setBackgroundResource(R.drawable.view);
+                                                del2 = 0;
+                                            }
+
+                                        }
+
+                    }
+                });
+
+                v3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (x == 0) {
+
+                            d3 ++;
+
+                            if (d3 == 1) {
+                                btn_v3.setBackgroundResource(R.drawable.btn_geral_on);
+                                btn_v3.setText("Ligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID3);
+                                id.setValue(2);
+
+                            }
+
+                            if (d3 == 2) {
+                                d3 = d3 - 2;
+                            }
+
+                            if (d3 == 0) {
+                                btn_v3.setBackgroundResource(R.drawable.btn_geral_off);
+                                btn_v3.setText("Desligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID3);
+                                id.setValue(0);
+
+                            }
+
+                        }
+
+                                        //Eliminar dispositivo 3
+                                        if (x == 1) {
+
+                                            y3 ++;
+
+                                            if (y3 == 1) {
+                                                v3.setBackgroundResource(R.drawable.view_del);
+                                                del3 = 1;
+                                            }
+
+                                            if (y3 == 2) {
+                                                y3 = y3 - 2;
+                                            }
+
+                                            if (y3 == 0) {
+                                                v3.setBackgroundResource(R.drawable.view);
+                                                del3 = 0;
+                                            }
+
+                                        }
+
+                    }
+                });
+
+                v4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (x == 0) {
+
+                            d4++;
+
+                            if (d4 == 1) {
+                                btn_v4.setBackgroundResource(R.drawable.btn_geral_on);
+                                btn_v4.setText("Ligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID4);
+                                id.setValue(2);
+
+                            }
+
+                            if (d4 == 2) {
+                                d4 = d4 - 2;
+                            }
+
+                            if (d4 == 0) {
+                                btn_v4.setBackgroundResource(R.drawable.btn_geral_off);
+                                btn_v4.setText("Desligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID4);
+                                id.setValue(0);
+
+                            }
+                        }
+
+                                        //Eliminar dispositivo 4
+                                        if (x == 1) {
+
+                                            y4 ++;
+
+                                            if (y4 == 1) {
+                                                v4.setBackgroundResource(R.drawable.view_del);
+                                                del4 = 1;
+                                            }
+
+                                            if (y4 == 2) {
+                                                y4 = y4 - 2;
+                                            }
+
+                                            if (y4 == 0) {
+                                                v4.setBackgroundResource(R.drawable.view);
+                                                del4 = 0;
+                                            }
+
+                                        }
+
+                    }
+                });
+
+                v5.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (x == 0) {
+
+                            d5++;
+
+                            if (d5 == 1) {
+                                btn_v5.setBackgroundResource(R.drawable.btn_geral_on);
+                                btn_v5.setText("Ligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID5);
+                                id.setValue(2);
+
+                            }
+
+                            if (d5 == 2) {
+                                d5 = d5 - 2;
+                            }
+
+                            if (d5 == 0) {
+                                btn_v5.setBackgroundResource(R.drawable.btn_geral_off);
+                                btn_v5.setText("Desligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID5);
+                                id.setValue(0);
+
+                            }
+                        }
+
+                                        //Eliminar dispositivo 5
+                                        if (x == 1) {
+
+                                            y5 ++;
+
+                                            if (y5 == 1) {
+                                                v5.setBackgroundResource(R.drawable.view_del);
+                                                del5 = 1;
+                                            }
+
+                                            if (y5 == 2) {
+                                                y5 = y5 - 2;
+                                            }
+
+                                            if (y5 == 0) {
+                                                v5.setBackgroundResource(R.drawable.view);
+                                                del5 = 0;
+                                            }
+
+                                        }
+
+                    }
+                });
+
+                v6.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (x == 0) {
+
+                            d6++;
+
+                            if (d6 == 1) {
+                                btn_v6.setBackgroundResource(R.drawable.btn_geral_on);
+                                btn_v6.setText("Ligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID6);
+                                id.setValue(2);
+
+                            }
+
+                            if (d6 == 2) {
+                                d6 = d6 - 2;
+                            }
+
+                            if (d6 == 0) {
+                                btn_v6.setBackgroundResource(R.drawable.btn_geral_off);
+                                btn_v6.setText("Desligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID6);
+                                id.setValue(0);
+
+                            }
+                        }
+
+                                        //Eliminar dispositivo 6
+                                        if (x == 1) {
+
+                                            y6 ++;
+
+                                            if (y6 == 1) {
+                                                v6.setBackgroundResource(R.drawable.view_del);
+                                                del6 = 1;
+                                            }
+
+                                            if (y6 == 2) {
+                                                y6 = y6 - 2;
+                                            }
+
+                                            if (y6 == 0) {
+                                                v6.setBackgroundResource(R.drawable.view);
+                                                del6 = 0;
+                                            }
+
+                                        }
+
+                    }
+                });
+
+                v7.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (x == 0) {
+
+                            d7++;
+
+                            if (d7 == 1) {
+                                btn_v7.setBackgroundResource(R.drawable.btn_geral_on);
+                                btn_v7.setText("Ligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID7);
+                                id.setValue(2);
+
+                            }
+
+                            if (d7 == 2) {
+                                d7 = d7 - 2;
+                            }
+
+                            if (d7 == 0) {
+                                btn_v7.setBackgroundResource(R.drawable.btn_geral_off);
+                                btn_v7.setText("Desligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID7);
+                                id.setValue(0);
+
+                            }
+                        }
+
+                                        //Eliminar dispositivo 7
+                                        if (x == 1) {
+
+                                            y7 ++;
+
+                                            if (y7 == 1) {
+                                                v7.setBackgroundResource(R.drawable.view_del);
+                                                del7 = 1;
+                                            }
+
+                                            if (y7 == 2) {
+                                                y7 = y7 - 2;
+                                            }
+
+                                            if (y7 == 0) {
+                                                v7.setBackgroundResource(R.drawable.view);
+                                                del7 = 0;
+                                            }
+
+                                        }
+
+                    }
+                });
+
+                v8.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (x == 0) {
+
+                            d8++;
+
+                            if (d8 == 1) {
+                                btn_v8.setBackgroundResource(R.drawable.btn_geral_on);
+                                btn_v8.setText("Ligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID8);
+                                id.setValue(2);
+
+                            }
+
+                            if (d8 == 2) {
+                                d8 = d8 - 2;
+                            }
+
+                            if (d8 == 0) {
+                                btn_v8.setBackgroundResource(R.drawable.btn_geral_off);
+                                btn_v8.setText("Desligado");
+                                rdb = FirebaseDatabase.getInstance();
+                                id = rdb.getReference(ID8);
+                                id.setValue(0);
+
+                            }
+                        }
+
+                                        //Eliminar dispositivo 8
+                                        if (x == 1) {
+
+                                            y8 ++;
+
+                                            if (y8 == 1) {
+                                                v8.setBackgroundResource(R.drawable.view_del);
+                                                del8 = 1;
+                                            }
+
+                                            if (y8 == 2) {
+                                                y8 = y8 - 2;
+                                            }
+
+                                            if (y8 == 0) {
+                                                v8.setBackgroundResource(R.drawable.view);
+                                                del8 = 0;
+                                            }
+
+                                        }
+
+                    }
+                });
+
+
+
+
+            }
+        }, 1500);
+
+        return root;
+
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                getFirebaseData();
+                getDataBaseData();
+
+                //Get FireStore Data
+                user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+                documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+                        if (documentSnapshot != null){
+
+                            novo_dispositivo = documentSnapshot.getString("novo_dispositivo");
+                            o1 = documentSnapshot.getString("o1");
+                            o2 = documentSnapshot.getString("o2");
+                            o3 = documentSnapshot.getString("o3");
+                            o4 = documentSnapshot.getString("o4");
+                            o5 = documentSnapshot.getString("o5");
+                            o6 = documentSnapshot.getString("o6");
+                            o7 = documentSnapshot.getString("o7");
+                            o8 = documentSnapshot.getString("o8");
+
+                            nome1 = documentSnapshot.getString("nome1");
+                            nome2 = documentSnapshot.getString("nome2");
+                            nome3 = documentSnapshot.getString("nome3");
+                            nome4 = documentSnapshot.getString("nome4");
+                            nome5 = documentSnapshot.getString("nome5");
+                            nome6 = documentSnapshot.getString("nome6");
+                            nome7 = documentSnapshot.getString("nome7");
+                            nome8 = documentSnapshot.getString("nome8");
+
+                            id1 = documentSnapshot.getString("id1");
+                            id2 = documentSnapshot.getString("id2");
+                            id3 = documentSnapshot.getString("id3");
+                            id4 = documentSnapshot.getString("id4");
+                            id5 = documentSnapshot.getString("id5");
+                            id6 = documentSnapshot.getString("id6");
+                            id7 = documentSnapshot.getString("id7");
+                            id8 = documentSnapshot.getString("id8");
+
+                            nome_add = documentSnapshot.getString("nome_add");
+                            id_add = documentSnapshot.getString("id_add");
+
+                            nome = documentSnapshot.getString("nome");
+                        }
+                    }
+                });
+
+                nomeusuario.setText(nome);
+
+                iniciarcompunentes();
+                atualizar();
+                organizar();
+                atualizar();
+                organizar();
+                getFirebaseData();
+                getDataBaseData();
+
+            }
+        }, 1500);
+
+
+
+
+
+
+
+    }
+
+
+    public void getFirebaseData(){
+
+        //Get FireBase Data
+        user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+        documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+                if (documentSnapshot != null){
+
+                    novo_dispositivo = documentSnapshot.getString("novo_dispositivo");
+                    o1 = documentSnapshot.getString("o1");
+                    o2 = documentSnapshot.getString("o2");
+                    o3 = documentSnapshot.getString("o3");
+                    o4 = documentSnapshot.getString("o4");
+                    o5 = documentSnapshot.getString("o5");
+                    o6 = documentSnapshot.getString("o6");
+                    o7 = documentSnapshot.getString("o7");
+                    o8 = documentSnapshot.getString("o8");
+
+                    nome1 = documentSnapshot.getString("nome1");
+                    nome2 = documentSnapshot.getString("nome2");
+                    nome3 = documentSnapshot.getString("nome3");
+                    nome4 = documentSnapshot.getString("nome4");
+                    nome5 = documentSnapshot.getString("nome5");
+                    nome6 = documentSnapshot.getString("nome6");
+                    nome7 = documentSnapshot.getString("nome7");
+                    nome8 = documentSnapshot.getString("nome8");
+
+                    id1 = documentSnapshot.getString("id1");
+                    id2 = documentSnapshot.getString("id2");
+                    id3 = documentSnapshot.getString("id3");
+                    id4 = documentSnapshot.getString("id4");
+                    id5 = documentSnapshot.getString("id5");
+                    id6 = documentSnapshot.getString("id6");
+                    id7 = documentSnapshot.getString("id7");
+                    id8 = documentSnapshot.getString("id8");
+
+                    nome_add = documentSnapshot.getString("nome_add");
+                    id_add = documentSnapshot.getString("id_add");
+
+                    nome = documentSnapshot.getString("nome");
+                }
+            }
+        });
+
+        nomeusuario.setText(nome);
+
+        Handler handler1 = new Handler();
+        handler1.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                ID1 = id1;
+                ID2 = id2;
+                ID3 = id3;
+                ID4 = id4;
+                ID5 = id5;
+                ID6 = id6;
+                ID7 = id7;
+                ID8 = id8;
+
+                o1 = o1;
+                o2 = o2;
+                o3 = o3;
+                o4 = o4;
+                o5 = o5;
+                o6 = o6;
+                o7 = o7;
+                o8 = o8;
+
+            }
+        }, 1500);
+
+    }
+
+
+    private void iniciarcompunentes(){
+
+        v1 = (View) getActivity().findViewById(R.id.vl_1);
+        v2 = (View) getActivity().findViewById(R.id.vl_2);
+        v3 = (View) getActivity().findViewById(R.id.vl_3);
+        v4 = (View) getActivity().findViewById(R.id.vl_4);
+        v5 = (View) getActivity().findViewById(R.id.vl_5);
+        v6 = (View) getActivity().findViewById(R.id.vl_6);
+        v7 = (View) getActivity().findViewById(R.id.vl_7);
+        v8 = (View) getActivity().findViewById(R.id.vl_8);
+
+        txt1 = getActivity().findViewById(R.id.txt_1);
+        txt2 = getActivity().findViewById(R.id.txt_2);
+        txt3 = getActivity().findViewById(R.id.txt_3);
+        txt4 = getActivity().findViewById(R.id.txt_4);
+        txt5 = getActivity().findViewById(R.id.txt_5);
+        txt6 = getActivity().findViewById(R.id.txt_6);
+        txt7 = getActivity().findViewById(R.id.txt_7);
+        txt8 = getActivity().findViewById(R.id.txt_8);
+
+        img1 = getActivity().findViewById(R.id.img_l_1);
+        img2 = getActivity().findViewById(R.id.img_l_2);
+        img3 = getActivity().findViewById(R.id.img_l_3);
+        img4 = getActivity().findViewById(R.id.img_l_4);
+        img5 = getActivity().findViewById(R.id.img_l_5);
+        img6 = getActivity().findViewById(R.id.img_l_6);
+        img7 = getActivity().findViewById(R.id.img_l_7);
+        img8 = getActivity().findViewById(R.id.img_l_8);
+
+
+        btn_v1 = getActivity().findViewById(R.id.btn_v1);
+        btn_v2 = getActivity().findViewById(R.id.btn_v2);
+        btn_v3 = getActivity().findViewById(R.id.btn_v3);
+        btn_v4 = getActivity().findViewById(R.id.btn_v4);
+        btn_v5 = getActivity().findViewById(R.id.btn_v5);
+        btn_v6 = getActivity().findViewById(R.id.btn_v6);
+        btn_v7 = getActivity().findViewById(R.id.btn_v7);
+        btn_v8 = getActivity().findViewById(R.id.btn_v8);
+
+
+    }
+
+
+    public void organizar(){
+
+        getFirebaseData();
+
+        user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+        documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+                if (documentSnapshot != null){
+
+                    novo_dispositivo = documentSnapshot.getString("novo_dispositivo");
+                    o1 = documentSnapshot.getString("o1");
+                    o2 = documentSnapshot.getString("o2");
+                    o3 = documentSnapshot.getString("o3");
+                    o4 = documentSnapshot.getString("o4");
+                    o5 = documentSnapshot.getString("o5");
+                    o6 = documentSnapshot.getString("o6");
+                    o7 = documentSnapshot.getString("o7");
+                    o8 = documentSnapshot.getString("o8");
+
+                    nome1 = documentSnapshot.getString("nome1");
+                    nome2 = documentSnapshot.getString("nome2");
+                    nome3 = documentSnapshot.getString("nome3");
+                    nome4 = documentSnapshot.getString("nome4");
+                    nome5 = documentSnapshot.getString("nome5");
+                    nome6 = documentSnapshot.getString("nome6");
+                    nome7 = documentSnapshot.getString("nome7");
+                    nome8 = documentSnapshot.getString("nome8");
+
+                    id1 = documentSnapshot.getString("id1");
+                    id2 = documentSnapshot.getString("id2");
+                    id3 = documentSnapshot.getString("id3");
+                    id4 = documentSnapshot.getString("id4");
+                    id5 = documentSnapshot.getString("id5");
+                    id6 = documentSnapshot.getString("id6");
+                    id7 = documentSnapshot.getString("id7");
+                    id8 = documentSnapshot.getString("id8");
+
+                    nome_add = documentSnapshot.getString("nome_add");
+                    id_add = documentSnapshot.getString("id_add");
+
+                    nome = documentSnapshot.getString("nome");
+                }
+            }
+        });
+
+        nomeusuario.setText(nome);
+
+        ID1 = id1;
+        ID2 = id2;
+        ID3 = id3;
+        ID4 = id4;
+        ID5 = id5;
+        ID6 = id6;
+        ID7 = id7;
+        ID8 = id8;
+
+        o1 = o1;
+        o2 = o2;
+        o3 = o3;
+        o4 = o4;
+        o5 = o5;
+        o6 = o6;
+        o7 = o7;
+        o8 = o8;
+
+
+        getFirebaseData();
+        getDataBaseData();
+
+        Handler handler1 = new Handler();
+        handler1.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+
+                if (o1.equals("0") & o2.equals("1")){
+
+                    nome1 = nome2;
+                    id1 = id2;
+                    o1 = "1";
+
+                    o2 = "0";
+                    nome2 = null;
+                    id2 = null;
+
+                    documentReference.update("nome1", nome1);
+                    documentReference.update("nome2", nome2);
+
+                    documentReference.update("id1", id1);
+                    documentReference.update("id2", id2);
+
+                    documentReference.update("o1", o1);
+                    documentReference.update("o2", o2);
+
+
+                    v2.setVisibility(View.INVISIBLE);
+                    btn_v2.setVisibility(View.INVISIBLE);
+                    img2.setVisibility(View.INVISIBLE);
+                    txt2.setVisibility(View.INVISIBLE);
+
+
+                    txt1.setText(nome1);
+                    btn_v1.setBackgroundResource(R.drawable.btn_geral_off);
+                    btn_v1.setText("Desligado");
+
+                    btn_v1.setVisibility(View.VISIBLE);
+                    img1.setVisibility(View.VISIBLE);
+                    txt1.setVisibility(View.VISIBLE);
+                    v1.setVisibility(View.INVISIBLE);
+
+
+
+
+
+                }
+
+                if (o2.equals("0") & o3.equals("1")){
+
+                    nome2 = nome3;
+                    id2 = id3;
+                    o2 = "1";
+
+                    o3 = "0";
+                    nome3 = null;
+                    id3 = null;
+
+                    documentReference.update("nome2", nome2);
+                    documentReference.update("nome3", nome3);
+
+                    documentReference.update("id2", id2);
+                    documentReference.update("id3", id3);
+
+                    documentReference.update("o2", o2);
+                    documentReference.update("o3", o3);
+
+
+                    v3.setVisibility(View.INVISIBLE);
+                    btn_v3.setVisibility(View.INVISIBLE);
+                    img3.setVisibility(View.INVISIBLE);
+                    txt3.setVisibility(View.INVISIBLE);
+
+
+
+                    txt2.setText(nome2);
+                    btn_v2.setBackgroundResource(R.drawable.btn_geral_off);
+                    btn_v2.setText("Desligado");
+
+
+                    btn_v2.setVisibility(View.VISIBLE);
+                    img2.setVisibility(View.VISIBLE);
+                    txt2.setVisibility(View.VISIBLE);
+                    v2.setVisibility(View.VISIBLE);
+
+
+
+                }
+
+                if (o3.equals("0") & o4.equals("1")){
+
+                    nome3 = nome4;
+                    id3 = id4;
+                    o3 = "1";
+
+                    o4 = "0";
+                    nome4 = null;
+                    id4 = null;
+
+                    documentReference.update("nome3", nome3);
+                    documentReference.update("nome4", nome4);
+
+                    documentReference.update("id3", id3);
+                    documentReference.update("id4", id4);
+
+                    documentReference.update("o3", o3);
+                    documentReference.update("o4", o4);
+
+
+                    v4.setVisibility(View.INVISIBLE);
+                    btn_v4.setVisibility(View.INVISIBLE);
+                    img4.setVisibility(View.INVISIBLE);
+                    txt4.setVisibility(View.INVISIBLE);
+
+
+                    txt3.setText(nome3);
+                    btn_v3.setBackgroundResource(R.drawable.btn_geral_off);
+                    btn_v3.setText("Desligado");
+
+
+                    btn_v3.setVisibility(View.VISIBLE);
+                    img3.setVisibility(View.VISIBLE);
+                    txt3.setVisibility(View.VISIBLE);
+                    v3.setVisibility(View.VISIBLE);
+
+                }
+
+                if (o4.equals("0") & o5.equals("1")){
+
+                    nome4 = nome5;
+                    id4 = id5;
+                    o4 = "1";
+
+                    o5 = "0";
+                    nome5 = null;
+                    id5 = null;
+
+                    //user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    //DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+                    documentReference.update("nome4", nome4);
+                    documentReference.update("nome5", nome5);
+
+                    documentReference.update("id4", id4);
+                    documentReference.update("id5", id5);
+
+                    documentReference.update("o4", o4);
+                    documentReference.update("o5", o5);
+
+
+                    v5.setVisibility(View.INVISIBLE);
+                    btn_v5.setVisibility(View.INVISIBLE);
+                    img5.setVisibility(View.INVISIBLE);
+                    txt5.setVisibility(View.INVISIBLE);
+
+
+                    txt4.setText(nome4);
+                    btn_v4.setBackgroundResource(R.drawable.btn_geral_off);
+                    btn_v4.setText("Desligado");
+
+
+                    btn_v4.setVisibility(View.VISIBLE);
+                    img4.setVisibility(View.VISIBLE);
+                    txt4.setVisibility(View.VISIBLE);
+                    v4.setVisibility(View.VISIBLE);
+
+                }
+
+                if (o5.equals("0") & o6.equals("1")){
+
+                    nome5 = nome6;
+                    id5 = id6;
+                    o5 = "1";
+
+                    o6 = "0";
+                    nome6 = null;
+                    id6 = null;
+
+                    //user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    //DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+                    documentReference.update("nome5", nome5);
+                    documentReference.update("nome6", nome6);
+
+                    documentReference.update("id5", id5);
+                    documentReference.update("id6", id6);
+
+                    documentReference.update("o5", o5);
+                    documentReference.update("o6", o6);
+
+
+                    v6.setVisibility(View.INVISIBLE);
+                    btn_v6.setVisibility(View.INVISIBLE);
+                    img6.setVisibility(View.INVISIBLE);
+                    txt6.setVisibility(View.INVISIBLE);
+
+
+                    txt5.setText(nome5);
+                    btn_v5.setBackgroundResource(R.drawable.btn_geral_off);
+                    btn_v5.setText("Desligado");
+
+
+                    btn_v5.setVisibility(View.VISIBLE);
+                    img5.setVisibility(View.VISIBLE);
+                    txt5.setVisibility(View.VISIBLE);
+                    v5.setVisibility(View.VISIBLE);
+
+
+
+                }
+
+                if (o6.equals("0") & o7.equals("1")){
+
+                    nome6 = nome7;
+                    id6 = id7;
+                    o6 = "1";
+
+                    o7 = "0";
+                    nome7 = null;
+                    id7 = null;
+
+                    //user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    //DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+                    documentReference.update("nome6", nome6);
+                    documentReference.update("nome7", nome7);
+
+                    documentReference.update("id6", id6);
+                    documentReference.update("id7", id7);
+
+                    documentReference.update("o6", o6);
+                    documentReference.update("o7", o7);
+
+
+                    v7.setVisibility(View.INVISIBLE);
+                    btn_v7.setVisibility(View.INVISIBLE);
+                    img7.setVisibility(View.INVISIBLE);
+                    txt7.setVisibility(View.INVISIBLE);
+
+
+                    txt6.setText(nome6);
+                    btn_v6.setBackgroundResource(R.drawable.btn_geral_off);
+                    btn_v6.setText("Desligado");
+
+
+                    btn_v6.setVisibility(View.VISIBLE);
+                    img6.setVisibility(View.VISIBLE);
+                    txt6.setVisibility(View.VISIBLE);
+                    v6.setVisibility(View.VISIBLE);
+
+                }
+
+                if (o7.equals("0") & o8.equals("1")){
+
+                    nome7 = nome8;
+                    id7 = id8;
+                    o7 = "1";
+
+                    o8 = "0";
+                    nome8 = null;
+                    id8 = null;
+
+                    //user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    //DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+                    documentReference.update("nome7", nome7);
+                    documentReference.update("nome8", nome8);
+
+                    documentReference.update("id7", id7);
+                    documentReference.update("id8", id8);
+
+                    documentReference.update("o7", o7);
+
+
+
+                    v8.setVisibility(View.INVISIBLE);
+                    btn_v8.setVisibility(View.INVISIBLE);
+                    img8.setVisibility(View.INVISIBLE);
+                    txt8.setVisibility(View.INVISIBLE);
+
+                    txt7.setText(nome7);
+                    btn_v7.setBackgroundResource(R.drawable.btn_geral_off);
+                    btn_v7.setText("Desligado");
+
+
+                    btn_v7.setVisibility(View.VISIBLE);
+                    img7.setVisibility(View.VISIBLE);
+                    txt7.setVisibility(View.VISIBLE);
+                    v7.setVisibility(View.VISIBLE);
+
+                }
+
+            }
+        }, 1500);
+
+
+    }
+
+    public void atualizar() {
+
+        iniciarcompunentes();
+        getFirebaseData();
+
+        user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+        documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+                if (documentSnapshot != null) {
+
+                    novo_dispositivo = documentSnapshot.getString("novo_dispositivo");
+                    o1 = documentSnapshot.getString("o1");
+                    o2 = documentSnapshot.getString("o2");
+                    o3 = documentSnapshot.getString("o3");
+                    o4 = documentSnapshot.getString("o4");
+                    o5 = documentSnapshot.getString("o5");
+                    o6 = documentSnapshot.getString("o6");
+                    o7 = documentSnapshot.getString("o7");
+                    o8 = documentSnapshot.getString("o8");
+
+                    nome1 = documentSnapshot.getString("nome1");
+                    nome2 = documentSnapshot.getString("nome2");
+                    nome3 = documentSnapshot.getString("nome3");
+                    nome4 = documentSnapshot.getString("nome4");
+                    nome5 = documentSnapshot.getString("nome5");
+                    nome6 = documentSnapshot.getString("nome6");
+                    nome7 = documentSnapshot.getString("nome7");
+                    nome8 = documentSnapshot.getString("nome8");
+
+                    id1 = documentSnapshot.getString("id1");
+                    id2 = documentSnapshot.getString("id2");
+                    id3 = documentSnapshot.getString("id3");
+                    id4 = documentSnapshot.getString("id4");
+                    id5 = documentSnapshot.getString("id5");
+                    id6 = documentSnapshot.getString("id6");
+                    id7 = documentSnapshot.getString("id7");
+                    id8 = documentSnapshot.getString("id8");
+
+                    nome_add = documentSnapshot.getString("nome_add");
+                    id_add = documentSnapshot.getString("id_add");
+
+                    nome = documentSnapshot.getString("nome");
+                }
+            }
+        });
+
+        nomeusuario.setText(nome);
+
+        ID1 = id1;
+        ID2 = id2;
+        ID3 = id3;
+        ID4 = id4;
+        ID5 = id5;
+        ID6 = id6;
+        ID7 = id7;
+        ID8 = id8;
+
+        o1 = o1;
+        o2 = o2;
+        o3 = o3;
+        o4 = o4;
+        o5 = o5;
+        o6 = o6;
+        o7 = o7;
+        o8 = o8;
+
+
+        getFirebaseData();
+        getDataBaseData();
+
+            Handler handler1 = new Handler();
+                handler1.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+                    iniciarcompunentes();
+
+                    user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    DocumentReference documentReference = banco_dados.collection("Usúarrios").document(user);
+
+                    if(o1.equals("0"))
+
+                    {
+
+                        v1.setVisibility(View.INVISIBLE);
+
+                        btn_v1.setVisibility(View.INVISIBLE);
+                        btn_v1.setBackgroundResource(R.drawable.btn_geral_off);
+                        btn_v1.setText("Desligado");
+
+                        txt1.setText("");
+                        txt1.setVisibility(View.INVISIBLE);
+
+                        img1.setVisibility(View.INVISIBLE);
+
+
+                    }else
+
+                    {
+
+
+                        v1.setVisibility(View.VISIBLE);
+
+                        btn_v1.setVisibility(View.VISIBLE);
+                        btn_v1.setBackgroundResource(R.drawable.btn_geral_off);
+                        btn_v1.setText("Desligado");
+
+                        txt1.setText(nome1);
+                        txt1.setVisibility(View.VISIBLE);
+
+                        img1.setVisibility(View.VISIBLE);
+
+
+                    }
+
+
+
+
+
+                    if(o2.equals("0"))
+
+                    {
+
+                        v2.setVisibility(View.INVISIBLE);
+
+                        btn_v2.setVisibility(View.INVISIBLE);
+                        btn_v2.setBackgroundResource(R.drawable.btn_geral_off);
+                        btn_v2.setText("Desligado");
+
+                        txt2.setText("");
+                        txt2.setVisibility(View.INVISIBLE);
+
+                        img2.setVisibility(View.INVISIBLE);
+
+
+                    }else
+
+                    {
+
+
+                        v2.setVisibility(View.VISIBLE);
+
+                        btn_v2.setVisibility(View.VISIBLE);
+                        btn_v2.setBackgroundResource(R.drawable.btn_geral_off);
+                        btn_v2.setText("Desligado");
+
+                        txt2.setText(nome2);
+                        txt2.setVisibility(View.VISIBLE);
+
+                        img2.setVisibility(View.VISIBLE);
+
+
+                    }
+
+
+
+                    if(o3.equals("0"))
+
+                    {
+
+                        v3.setVisibility(View.INVISIBLE);
+
+                        btn_v3.setVisibility(View.INVISIBLE);
+                        btn_v3.setBackgroundResource(R.drawable.btn_geral_off);
+                        btn_v3.setText("Desligado");
+
+                        txt3.setText("");
+                        txt3.setVisibility(View.INVISIBLE);
+
+                        img3.setVisibility(View.INVISIBLE);
+
+
+                    }else
+
+                    {
+
+
+                        v3.setVisibility(View.VISIBLE);
+
+                        btn_v3.setVisibility(View.VISIBLE);
+                        btn_v3.setBackgroundResource(R.drawable.btn_geral_off);
+                        btn_v3.setText("Desligado");
+
+                        txt3.setText(nome3);
+                        txt3.setVisibility(View.VISIBLE);
+
+                        img3.setVisibility(View.VISIBLE);
+
+
+                    }
+
+
+
+                    if(o4.equals("0"))
+
+                    {
+
+                        v4.setVisibility(View.INVISIBLE);
+
+                        btn_v4.setVisibility(View.INVISIBLE);
+                        btn_v4.setBackgroundResource(R.drawable.btn_geral_off);
+                        btn_v4.setText("Desligado");
+
+                        txt4.setText("");
+                        txt4.setVisibility(View.INVISIBLE);
+
+                        img4.setVisibility(View.INVISIBLE);
+
+
+                    }else
+
+                    {
+
+
+                        v4.setVisibility(View.VISIBLE);
+
+                        btn_v4.setVisibility(View.VISIBLE);
+                        btn_v4.setBackgroundResource(R.drawable.btn_geral_off);
+                        btn_v4.setText("Desligado");
+
+                        txt4.setText(nome4);
+                        txt4.setVisibility(View.VISIBLE);
+
+                        img4.setVisibility(View.VISIBLE);
+
+
+                    }
+
+
+
+
+                    if(o5.equals("0"))
+
+                    {
+
+                        v5.setVisibility(View.INVISIBLE);
+
+                        btn_v5.setVisibility(View.INVISIBLE);
+                        btn_v5.setBackgroundResource(R.drawable.btn_geral_off);
+                        btn_v5.setText("Desligado");
+
+                        txt5.setText("");
+                        txt5.setVisibility(View.INVISIBLE);
+
+                        img5.setVisibility(View.INVISIBLE);
+
+
+                    }else
+
+                    {
+
+
+                        v5.setVisibility(View.VISIBLE);
+
+                        btn_v5.setVisibility(View.VISIBLE);
+                        btn_v5.setBackgroundResource(R.drawable.btn_geral_off);
+                        btn_v5.setText("Desligado");
+
+                        txt5.setText(nome5);
+                        txt5.setVisibility(View.VISIBLE);
+
+                        img5.setVisibility(View.VISIBLE);
+
+
+                    }
+
+
+                    if(o6.equals("0"))
+
+                    {
+
+                        v6.setVisibility(View.INVISIBLE);
+
+                        btn_v6.setVisibility(View.INVISIBLE);
+                        btn_v6.setBackgroundResource(R.drawable.btn_geral_off);
+                        btn_v6.setText("Desligado");
+
+                        txt6.setText("");
+                        txt6.setVisibility(View.INVISIBLE);
+
+                        img6.setVisibility(View.INVISIBLE);
+
+
+                    }else
+
+                    {
+
+
+                        v6.setVisibility(View.VISIBLE);
+
+                        btn_v6.setVisibility(View.VISIBLE);
+                        btn_v6.setBackgroundResource(R.drawable.btn_geral_off);
+                        btn_v6.setText("Desligado");
+
+                        txt6.setText(nome6);
+                        txt6.setVisibility(View.VISIBLE);
+
+                        img6.setVisibility(View.VISIBLE);
+
+
+                    }
+
+
+                    if(o7.equals("0"))
+
+                    {
+
+                        v7.setVisibility(View.INVISIBLE);
+
+                        btn_v7.setVisibility(View.INVISIBLE);
+                        btn_v7.setBackgroundResource(R.drawable.btn_geral_off);
+                        btn_v7.setText("Desligado");
+
+                        txt7.setText("");
+                        txt7.setVisibility(View.INVISIBLE);
+
+                        img7.setVisibility(View.INVISIBLE);
+
+
+                    }else
+
+                    {
+
+
+                        v7.setVisibility(View.VISIBLE);
+
+                        btn_v7.setVisibility(View.VISIBLE);
+                        btn_v7.setBackgroundResource(R.drawable.btn_geral_off);
+                        btn_v7.setText("Desligado");
+
+                        txt7.setText(nome7);
+                        txt7.setVisibility(View.VISIBLE);
+
+                        img7.setVisibility(View.VISIBLE);
+
+
+                    }
+
+
+
+
+                    if(o8.equals("0"))
+
+                    {
+
+                        v8.setVisibility(View.INVISIBLE);
+
+                        btn_v8.setVisibility(View.INVISIBLE);
+                        btn_v8.setBackgroundResource(R.drawable.btn_geral_off);
+                        btn_v8.setText("Desligado");
+
+                        txt8.setText("");
+                        txt8.setVisibility(View.INVISIBLE);
+
+                        img8.setVisibility(View.INVISIBLE);
+
+
+                    }else
+
+                    {
+
+
+                        v8.setVisibility(View.VISIBLE);
+
+                        btn_v8.setVisibility(View.VISIBLE);
+                        btn_v8.setBackgroundResource(R.drawable.btn_geral_off);
+                        btn_v8.setText("Desligado");
+
+                        txt8.setText(nome8);
+                        txt8.setVisibility(View.VISIBLE);
+
+                        img8.setVisibility(View.VISIBLE);
+
+
+                    }
+                }
+            }, 1500);
+    }
+
+
+
+    public void getDataBaseData() {
+
+        iniciarcompunentes();
+        atualizar();
+        organizar();
+        atualizar();
+        organizar();
+        getFirebaseData();
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                iniciarcompunentes();
+                atualizar();
+                organizar();
+                atualizar();
+                organizar();
+                getFirebaseData();
+
+                if (o1.equals("1")) {
+
+                    FirebaseDatabase database1 = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef1 = database1.getReference(id1);
+
+                    myRef1.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            Long longValue = dataSnapshot.getValue(Long.class);
+                            String value = String.valueOf(longValue);
+
+
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+
+                                    if (value.equals("0")) {
+
+                                        d1 = 0;
+
+                                        btn_v1.setVisibility(View.VISIBLE);
+                                        btn_v1.setBackgroundResource(R.drawable.btn_geral_off);
+                                        btn_v1.setText("Desligado");
+
+                                    }
+
+                                    if (value.equals("2")) {
+
+                                        btn_v1.setVisibility(View.VISIBLE);
+                                        btn_v1.setBackgroundResource(R.drawable.btn_geral_on);
+                                        btn_v1.setText("Ligado");
+
+                                        d1 = 1;
+
+                                    }
+
+                                }
+                            }, 700);
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError error) {
+
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    btn_v1.setVisibility(View.VISIBLE);
+                                    btn_v1.setBackgroundResource(R.drawable.btn_geral_error);
+                                    btn_v1.setText("ERROR");
+                                    d1 = 0;
+
+                                }
+                            }, 700);
+
+                        }
+                    });
+
+                }
+
+
+                if (o2.equals("1")) {
+
+                    FirebaseDatabase database2 = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef2 = database2.getReference(id2);
+
+                    myRef2.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            String value = dataSnapshot.getValue(String.class);
+
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+
+                                    if (value.equals("0")) {
+
+                                        d1 = 0;
+
+                                        btn_v2.setVisibility(View.VISIBLE);
+                                        btn_v2.setBackgroundResource(R.drawable.btn_geral_off);
+                                        btn_v2.setText("Desligado");
+
+                                    }
+
+                                    if (value.equals("2")) {
+
+                                        btn_v2.setVisibility(View.VISIBLE);
+                                        btn_v2.setBackgroundResource(R.drawable.btn_geral_on);
+                                        btn_v2.setText("Ligado");
+
+                                        d2 = 1;
+
+                                    }
+
+                                }
+                            }, 700);
+
+                        }
+
+
+                        @Override
+                        public void onCancelled(DatabaseError error) {
+
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    btn_v2.setVisibility(View.VISIBLE);
+                                    btn_v2.setBackgroundResource(R.drawable.btn_geral_error);
+                                    btn_v2.setText("ERROR");
+                                    d2 = 0;
+
+                                }
+                            }, 700);
+
+                        }
+                    });
+                }
+
+
+
+                if (o3.equals("1")) {
+
+                    FirebaseDatabase database3 = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef3 = database3.getReference(id3);
+
+                    myRef3.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            String value = dataSnapshot.getValue(String.class);
+
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    if (value.equals("0")){
+
+                                        btn_v3.setVisibility(View.VISIBLE);
+                                        btn_v3.setBackgroundResource(R.drawable.btn_geral_off);
+                                        btn_v3.setText("Desligado");
+                                        d3 = 0;
+
+                                    }
+
+                                    if (value.equals("2")){
+
+                                        btn_v3.setVisibility(View.VISIBLE);
+                                        btn_v3.setBackgroundResource(R.drawable.btn_geral_on);
+                                        btn_v3.setText("Ligado");
+                                        d3 = 1;
+
+                                    }
+
+                                }
+                            }, 700);
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError error) {
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    btn_v3.setVisibility(View.VISIBLE);
+                                    btn_v3.setBackgroundResource(R.drawable.btn_geral_error);
+                                    btn_v3.setText("ERROR");
+                                    d3 = 0;
+
+                                }
+                            }, 700);
+
+                        }
+                    });
+
+                }
+
+
+
+                if (o4.equals("1")) {
+
+                    FirebaseDatabase database4 = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef4 = database4.getReference(id4);
+
+                    myRef4.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            String value = dataSnapshot.getValue(String.class);
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    if (value.equals("0")){
+
+                                        btn_v4.setVisibility(View.VISIBLE);
+                                        btn_v4.setBackgroundResource(R.drawable.btn_geral_off);
+                                        btn_v4.setText("Desligado");
+                                        d4 = 0;
+
+                                    }
+
+                                    if (value.equals("2")){
+
+                                        btn_v4.setVisibility(View.VISIBLE);
+                                        btn_v4.setBackgroundResource(R.drawable.btn_geral_on);
+                                        btn_v4.setText("Ligado");
+                                        d4 = 1;
+
+                                    }
+
+                                }
+                            }, 700);
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError error) {
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    btn_v4.setVisibility(View.VISIBLE);
+                                    btn_v4.setBackgroundResource(R.drawable.btn_geral_error);
+                                    btn_v4.setText("ERROR");
+                                    d4 = 0;
+
+                                }
+                            }, 700);
+
+                        }
+                    });
+
+                }
+
+
+
+
+
+
+                if (o5.equals("1")) {
+
+                    FirebaseDatabase database5 = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef5 = database5.getReference(id5);
+
+                    myRef5.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            String value = dataSnapshot.getValue(String.class);
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    if (value.equals("0")){
+
+                                        btn_v5.setVisibility(View.VISIBLE);
+                                        btn_v5.setBackgroundResource(R.drawable.btn_geral_off);
+                                        btn_v5.setText("Desligado");
+                                        d5 = 0;
+
+                                    }
+
+                                    if (value.equals("2")){
+
+                                        btn_v5.setVisibility(View.VISIBLE);
+                                        btn_v5.setBackgroundResource(R.drawable.btn_geral_on);
+                                        btn_v5.setText("Ligado");
+                                        d5 = 1;
+
+                                    }
+
+                                }
+                            }, 700);
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError error) {
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    btn_v5.setVisibility(View.VISIBLE);
+                                    btn_v5.setBackgroundResource(R.drawable.btn_geral_error);
+                                    btn_v5.setText("ERROR");
+                                    d5 = 0;
+
+                                }
+                            }, 700);
+
+                        }
+                    });
+
+                }
+
+
+
+                if (o6.equals("1")) {
+
+                    FirebaseDatabase database6 = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef6 = database6.getReference(id6);
+
+                    myRef6.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            String value = dataSnapshot.getValue(String.class);
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    if (value.equals("0")){
+
+                                        btn_v6.setVisibility(View.VISIBLE);
+                                        btn_v6.setBackgroundResource(R.drawable.btn_geral_off);
+                                        btn_v6.setText("Fechado");
+                                        d6 = 0;
+
+                                    }
+
+                                    if (value.equals("2")){
+
+                                        btn_v6.setVisibility(View.VISIBLE);
+                                        btn_v6.setBackgroundResource(R.drawable.btn_geral_on);
+                                        btn_v6.setText("Aberto");
+                                        d6 = 1;
+
+                                    }
+
+                                }
+                            }, 700);
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError error) {
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    btn_v6.setVisibility(View.VISIBLE);
+                                    btn_v6.setBackgroundResource(R.drawable.btn_geral_error);
+                                    btn_v6.setText("ERROR");
+                                    d6 = 0;
+
+                                }
+                            }, 700);
+
+                        }
+                    });
+
+                }
+
+
+
+
+                if (o7.equals("1")) {
+
+                    FirebaseDatabase database7 = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef7 = database7.getReference(id7);
+
+                    myRef7.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            String value = dataSnapshot.getValue(String.class);
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    if (value.equals("0")){
+
+                                        btn_v7.setVisibility(View.VISIBLE);
+                                        btn_v7.setBackgroundResource(R.drawable.btn_geral_off);
+                                        btn_v7.setText("Fechado");
+                                        d7 = 0;
+
+                                    }
+
+                                    if (value.equals("2")){
+
+                                        btn_v7.setVisibility(View.VISIBLE);
+                                        btn_v7.setBackgroundResource(R.drawable.btn_geral_on);
+                                        btn_v7.setText("Aberto");
+                                        d7 = 1;
+
+                                    }
+
+                                }
+                            }, 700);
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError error) {
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    btn_v7.setVisibility(View.VISIBLE);
+                                    btn_v7.setBackgroundResource(R.drawable.btn_geral_error);
+                                    btn_v7.setText("ERROR");
+                                    d7 = 0;
+
+                                }
+                            }, 700);
+
+                        }
+                    });
+
+                }
+
+
+
+
+
+
+
+                if (o8.equals("1")) {
+
+                    FirebaseDatabase database8 = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef8 = database8.getReference(id8);
+
+                    myRef8.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            String value = dataSnapshot.getValue(String.class);
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    if (value.equals("0")){
+
+                                        btn_v8.setVisibility(View.VISIBLE);
+                                        btn_v8.setBackgroundResource(R.drawable.btn_geral_off);
+                                        btn_v8.setText("Fechado");
+                                        d8 = 0;
+
+                                    }
+
+                                    if (value.equals("2")){
+
+                                        btn_v8.setVisibility(View.VISIBLE);
+                                        btn_v8.setBackgroundResource(R.drawable.btn_geral_on);
+                                        btn_v8.setText("Aberto");
+                                        d8 = 1;
+
+                                    }
+
+                                }
+                            }, 700);
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError error) {
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    btn_v8.setVisibility(View.VISIBLE);
+                                    btn_v8.setBackgroundResource(R.drawable.btn_geral_error);
+                                    btn_v8.setText("ERROR");
+                                    d8 = 0;
+
+                                }
+                            }, 700);
+
+                        }
+                    });
+
+                }
+
+            }
+        }, 1500);
+
+
+    }
+
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+}
